@@ -1,7 +1,6 @@
 package com.app.service;
 
 import java.util.List;
-import java.util.Optional;
 
 import com.app.entity.Employee;
 
@@ -15,7 +14,7 @@ public interface EmployeeService {
 
 	public void deleteEmployee(Integer id);
 
-	public Employee updateEmployee( Employee empObj);
+	public Employee updateEmployee(Employee empObj);
 
 	// public EmployeeDto converEntityToDto(Employee empObj);
 

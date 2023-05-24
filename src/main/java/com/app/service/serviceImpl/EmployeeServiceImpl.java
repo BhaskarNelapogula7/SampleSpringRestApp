@@ -1,15 +1,10 @@
 package com.app.service.serviceImpl;
 
 import java.util.List;
-import java.util.Optional;
-
-import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.app.Exception.EmployeeNotFoundException;
-import com.app.dto.EmployeeDto;
 import com.app.entity.Employee;
 import com.app.repository.EmployeeRepo;
 import com.app.service.EmployeeService;
