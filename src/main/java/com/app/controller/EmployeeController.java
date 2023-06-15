@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.app.Exception.EmployeeNotFoundException;
@@ -20,7 +21,10 @@ import com.app.dto.EmployeeDto;
 import com.app.entity.Employee;
 import com.app.service.serviceImpl.EmployeeServiceImpl;
 
+import io.swagger.v3.oas.annotations.Operation;
+
 @RestController
+@RequestMapping("/employee")
 public class EmployeeController {
 
 	@Autowired
@@ -29,14 +33,14 @@ public class EmployeeController {
 	@Autowired
 	private ModelMapper modelMapper;
 
-	@PostMapping("/save")
+	@Operation(summary="store employee data into db")
+	@PostMapping
 	public ResponseEntity<Employee> saveEmployee(@RequestBody EmployeeDto empDto) throws EmployeeNotFoundException {
 		ResponseEntity<Employee> resp = null;
 		try {
 			// convert DTO to an entity
 			// modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.LOOSE);
 
-			
 			Employee emp = modelMapper.map(empDto, Employee.class);
 			Employee saveEmployee = empService.saveEmployee(emp);
 			resp = new ResponseEntity<Employee>(saveEmployee, HttpStatus.OK);
@@ -67,8 +71,8 @@ public class EmployeeController {
 	 * EmployeeNotFoundException("Employee Deatails not found this id in database");
 	 * } return resp; }
 	 */
-	
-	@GetMapping("/getid/{id}")
+	@Operation(summary="get employee data from db by id")
+	@GetMapping("/{id}")
 	public ResponseEntity<EmployeeDto> getEmployeeById(@PathVariable Integer id) throws EmployeeNotFoundException {
 
 		Employee employee = empService.getEmployeeById(id);
@@ -84,8 +88,8 @@ public class EmployeeController {
 			throw new EmployeeNotFoundException("primary key vailation please check once");
 		}
 	}
-
-	@GetMapping(value = "/getAll")
+	@Operation(summary="get all employee data from db")
+	@GetMapping
 	public ResponseEntity<?> getAllEmployees() {
 
 		List<Employee> allEmployees = empService.getAllEmployees();
@@ -115,8 +119,8 @@ public class EmployeeController {
 	 * EmployeeNotFoundException("Employee Details not found in database"); } return
 	 * resp; }
 	 */
-
-	@DeleteMapping("/delete/{id}")
+	@Operation(summary="delete employee data by id")
+	@DeleteMapping("/{id}")
 	public ResponseEntity<?> deleteEmployee(@PathVariable Integer id) throws EmployeeNotFoundException {
 		ResponseEntity<?> resp = null;
 		try {
@@ -147,8 +151,8 @@ public class EmployeeController {
 	 * EmployeeNotFoundException("Details are not availble with in databse"); }
 	 * return resp; }
 	 */
-	
-	@PutMapping(value = "/update/{id}")
+	@Operation(summary="update data by id")
+	@PutMapping(value = "/{id}")
 	public ResponseEntity<?> updateEmployee(@PathVariable Integer id,@RequestBody EmployeeDto employeeDto) throws EmployeeNotFoundException{
 		
 		Employee emp = empService.getEmployeeById(id);
