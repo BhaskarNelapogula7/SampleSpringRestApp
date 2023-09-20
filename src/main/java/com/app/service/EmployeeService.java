@@ -16,6 +16,6 @@ public interface EmployeeService {
 
 	public Employee updateEmployee(Employee empObj);
 
-	// public EmployeeDto converEntityToDto(Employee empObj);
+	public Employee patchEmployee(Employee empObj);
 
 }
