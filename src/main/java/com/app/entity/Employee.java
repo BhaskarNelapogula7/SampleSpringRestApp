@@ -16,30 +16,15 @@ public class Employee {
 
 	//create variables empId,empName,empEmail,empPhNum,empSal,empGender with jpa annotations
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "emp_id")
-    private Integer empId;
-	@Column(name = "emp_name")
-    private String empName;
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Integer empId;
+	private String empName;
+	private String empEmail;
+	private String empPhNum;
+	private int empSal;
+	private String empGender;
 
-	@Column(name = "emp_email")
-    private String empEmail;
-	@Column(name = "emp_ph_num")
-    private String empPhNum;
-
-	@Column(name = "emp_sal")
-    private int empSal;
-	@Column(name = "emp_gender")
-    private String empGender;
-	//provide no-arg constructor
-
-
-	public Employee() {
-
-		super();
-	}
-	//provide getters and setters
-
+	//create setters and getters
 	public Integer getEmpId() {
 		return empId;
 	}
@@ -50,38 +35,36 @@ public class Employee {
 		return empName;
 	}
 	public void setEmpName(String empName) {
-		this.empName = empName;
+		this.empName=empName;
 	}
 	public String getEmpEmail() {
 		return empEmail;
 	}
 	public void setEmpEmail(String empEmail) {
-		this.empEmail = empEmail;
+		this.empEmail=empEmail;
 	}
 	public String getEmpPhNum() {
 		return empPhNum;
 	}
 	public void setEmpPhNum(String empPhNum) {
-		this.empPhNum = empPhNum;
+		this.empPhNum=empPhNum;
 	}
 	public int getEmpSal() {
 		return empSal;
 	}
 	public void setEmpSal(int empSal) {
-		this.empSal = empSal;
+		this.empSal=empSal;
 	}
 	public String getEmpGender() {
 		return empGender;
 	}
 	public void setEmpGender(String empGender) {
-		this.empGender = empGender;
+		this.empGender=empGender;
 	}
-	//provide tostring()
-    @Override
+	@Override
 	public String toString() {
-			return "Employee [empId=" + empId + ", empName=" + empName + ", empEmail=" + empEmail + ", empPhNum=" + empPhNum
-                + ", empSal=" + empSal + ", empGender=" + empGender + "]";
+		return "Employee [empId=" + empId + ", empName=" + empName + ", empEmail=" + empEmail + ", empPhNum=" + empPhNum
+				+ ", empSal=" + empSal + ", empGender=" + empGender + "]";
 	}
 
 }
-

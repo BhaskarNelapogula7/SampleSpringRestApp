@@ -45,9 +45,8 @@ public class EmployeeController {
 	public ResponseEntity<EmployeeDto> getEmployeeById(@PathVariable Integer id) throws EmployeeNotFoundException {
 
 		Employee employee = empService.getEmployeeById(id);
-
-		EmployeeDto empDto = modelMapper.map(employee, EmployeeDto.class);
 		if (employee != null) {
+			EmployeeDto empDto = modelMapper.map(employee, EmployeeDto.class);
 			return new ResponseEntity<EmployeeDto>(empDto, HttpStatus.OK);
 		} else {
 			throw new EmployeeNotFoundException("primary key violation please check once");
